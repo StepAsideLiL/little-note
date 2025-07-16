@@ -1,3 +1,4 @@
+import Editor from "@/components/Editor";
 import SwitchThemeButton from "@/components/SwitchThemeButton";
 import { Button } from "@workspace/design-system/ui/button";
 import Link from "next/link";
@@ -19,6 +20,8 @@ export default function Page() {
         </Button>
         <SwitchThemeButton />
       </div>
+
+      <Editor />
     </main>
   );
 }
