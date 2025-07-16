@@ -1,0 +1,8 @@
+{
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "tailwindCSS.classFunctions": ["cva", "clsx", "twMerge", "cn"]
+}
