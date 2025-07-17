@@ -1,20 +1,20 @@
 /* @import "tailwindcss"; */
 
-h1.heading {
+h2.heading {
   /* @apply text-3xl font-semibold leading-loose; */
   font-size: 30px;
   line-height: 2;
   font-weight: 600;
 }
 
-h2.heading {
+h3.heading {
   /* @apply text-2xl font-semibold leading-relaxed; */
   font-size: 24px;
   line-height: 1.5;
   font-weight: 600;
 }
 
-h3.heading {
+h4.heading {
   /* @apply text-xl font-semibold leading-normal; */
   font-size: 20px;
   line-height: 1;
