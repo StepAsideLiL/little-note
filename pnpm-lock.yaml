@@ -200,6 +200,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.1.6(@types/react@19.1.8)
+      '@workspace/design-system':
+        specifier: workspace:*
+        version: link:../design-system
       '@workspace/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
