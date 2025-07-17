@@ -15,6 +15,7 @@
     "@tiptap/extension-heading": "^3.0.7",
     "@tiptap/extension-image": "^3.0.7",
     "@tiptap/extension-italic": "^3.0.7",
+    "@tiptap/extension-list": "^3.0.7",
     "@tiptap/extension-paragraph": "^3.0.7",
     "@tiptap/extension-text": "^3.0.7",
     "@tiptap/extension-text-align": "^3.0.7",
