@@ -8,6 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {
+    "@tiptap/extension-blockquote": "^2.12.0",
     "@tiptap/extension-bold": "^2.12.0",
     "@tiptap/extension-color": "^2.12.0",
     "@tiptap/extension-document": "^2.12.0",
