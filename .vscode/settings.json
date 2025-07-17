@@ -4,5 +4,5 @@
       "mode": "auto"
     }
   ],
-  "tailwindCSS.classFunctions": ["cva", "clsx", "twMerge", "cn"]
+  "tailwindCSS.classFunctions": ["cva", "clsx", "twMerge", "cn", "useEditor"]
 }
