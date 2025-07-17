@@ -31,6 +31,7 @@
     "typescript": "^5.8.3"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./extension": "./src/extension.ts"
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { EditorContent, extension, useEditor } from "@workspace/editor";
+import { EditorContent, useEditor } from "@workspace/editor";
+import { extension } from "@workspace/editor/extension";
 
 export default function Editor() {
   const editor = useEditor({
