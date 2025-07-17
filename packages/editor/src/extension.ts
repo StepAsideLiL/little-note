@@ -1,4 +1,4 @@
-// import * as Blockquote from "@tiptap/extension-blockquote";
+import Blockquote from "@tiptap/extension-blockquote";
 import Bold from "@tiptap/extension-bold";
 // import * as Color from "@tiptap/extension-color";
 import Document from "@tiptap/extension-document";
@@ -14,9 +14,14 @@ import { textblockTypeInputRule } from "@tiptap/react";
 import { cn } from "@workspace/design-system/lib/utils";
 
 export const extensions = [
+  Blockquote.configure({
+    HTMLAttributes: {
+      class: cn("blockquote"),
+    },
+  }),
   Bold.configure({
     HTMLAttributes: {
-      class: "font-bold",
+      class: cn("font-bold"),
     },
   }),
   Document,
