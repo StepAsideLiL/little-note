@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "../../../design-system/src/styles/globals.css";
 
 .ProseMirror:focus-visible {
   outline: none;
@@ -16,4 +16,12 @@ h3.heading {
 
 h4.heading {
   @apply text-xl font-semibold leading-normal;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  @apply text-muted-foreground;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }
