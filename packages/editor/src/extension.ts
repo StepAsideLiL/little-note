@@ -1,5 +1,6 @@
 import Blockquote from "@tiptap/extension-blockquote";
 import Bold from "@tiptap/extension-bold";
+import { BulletList, ListItem } from "@tiptap/extension-list";
 // import * as Color from "@tiptap/extension-color";
 import Document from "@tiptap/extension-document";
 import Heading from "@tiptap/extension-heading";
@@ -16,13 +17,19 @@ import { cn } from "@workspace/design-system/lib/utils";
 export const extensions = [
   Blockquote.configure({
     HTMLAttributes: {
-      class: cn("blockquote"),
+      class: cn("border-l-2 px-5 py-2.5 mx-5 my-2.5"),
     },
   }),
   Bold.configure({
     HTMLAttributes: {
       class: cn("font-bold"),
     },
+  }),
+  BulletList.configure({
+    HTMLAttributes: {
+      class: cn("list-disc list-inside"),
+    },
+    itemTypeName: "listItem",
   }),
   Document,
   Heading.configure({
@@ -48,6 +55,11 @@ export const extensions = [
   Italic.configure({
     HTMLAttributes: {
       class: cn("italic"),
+    },
+  }),
+  ListItem.configure({
+    HTMLAttributes: {
+      class: cn("*:inline-block"),
     },
   }),
   Paragraph.configure({
