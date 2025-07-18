@@ -1,9 +1,10 @@
 import Blockquote from "@tiptap/extension-blockquote";
 import Bold from "@tiptap/extension-bold";
-import { BulletList, ListItem } from "@tiptap/extension-list";
+import { BulletList, ListItem, OrderedList } from "@tiptap/extension-list";
 // import * as Color from "@tiptap/extension-color";
 import Document from "@tiptap/extension-document";
 import Heading from "@tiptap/extension-heading";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 // import * as Image from "@tiptap/extension-image";
 import Italic from "@tiptap/extension-italic";
 import Paragraph from "@tiptap/extension-paragraph";
@@ -52,6 +53,11 @@ export const extensions = [
       });
     },
   }),
+  HorizontalRule.configure({
+    HTMLAttributes: {
+      class: cn("text-muted-foreground"),
+    },
+  }),
   Italic.configure({
     HTMLAttributes: {
       class: cn("italic"),
@@ -60,6 +66,11 @@ export const extensions = [
   ListItem.configure({
     HTMLAttributes: {
       class: cn("*:inline-block"),
+    },
+  }),
+  OrderedList.configure({
+    HTMLAttributes: {
+      class: cn("list-decimal list-inside"),
     },
   }),
   Paragraph.configure({
