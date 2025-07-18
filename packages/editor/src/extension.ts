@@ -10,7 +10,7 @@ import Italic from "@tiptap/extension-italic";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 // import * as TextStyle from "@tiptap/extension-text-style";
-// import * as TextAlign from "@tiptap/extension-text-align";
+import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
 import { textblockTypeInputRule } from "@tiptap/react";
 import { cn } from "@workspace/design-system/lib/utils";
@@ -79,6 +79,10 @@ export const extensions = [
     },
   }),
   Text,
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
+    defaultAlignment: "left",
+  }),
   Underline.configure({
     HTMLAttributes: {
       class: cn("underline"),
