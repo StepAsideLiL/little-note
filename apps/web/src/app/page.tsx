@@ -1,9 +1,11 @@
-import Editor from "@/components/editor/Editor";
+import Editor from "@/components/note/Editor";
+import NoteTitle from "@/components/note/NoteTitle";
 
 export default function Page() {
   return (
-    <main className="mx-auto w-full max-w-3xl py-10">
+    <>
+      <NoteTitle />
       <Editor />
-    </main>
+    </>
   );
 }

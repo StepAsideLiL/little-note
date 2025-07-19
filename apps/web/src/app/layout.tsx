@@ -15,7 +15,11 @@ export default function Layout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${fonts.inter.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <div className="flex min-h-screen flex-col">
+            <main className="mx-auto w-full max-w-3xl flex-1 py-10">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
