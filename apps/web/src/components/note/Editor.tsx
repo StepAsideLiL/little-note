@@ -13,7 +13,7 @@ export default function Editor() {
 
   return (
     <>
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor} className="h-full" />
     </>
   );
 }
