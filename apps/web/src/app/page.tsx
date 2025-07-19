@@ -1,10 +1,10 @@
 import Editor from "@/components/note/Editor";
-import NoteTitle from "@/components/note/NoteTitle";
+import NoteTitleHeading from "@/components/note/NoteTitleHeading";
 
 export default function Page() {
   return (
     <>
-      <NoteTitle />
+      <NoteTitleHeading />
       <Editor />
     </>
   );
