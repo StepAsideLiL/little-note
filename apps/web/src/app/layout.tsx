@@ -6,6 +6,7 @@ import ThemeProvider from "@/components/providers/ThemeProvider";
 import Sidebar from "@/components/sidebar/Sidebar";
 import NoteTitleInput from "@/components/note/NoteTitleInput";
 import SwitchThemeButton from "@/components/SwitchThemeButton";
+import SaveNoteButton from "@/components/note/SaveNoteButton";
 
 export const metadata: Metadata = nextMetadata();
 
@@ -25,7 +26,10 @@ export default function Layout({
                 <NoteTitleInput />
               </div>
 
-              <SwitchThemeButton />
+              <div className="flex items-center gap-2">
+                <SaveNoteButton />
+                <SwitchThemeButton />
+              </div>
             </header>
 
             <main className="mx-auto w-full max-w-3xl flex-1 py-10">
