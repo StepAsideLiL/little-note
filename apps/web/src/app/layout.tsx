@@ -4,6 +4,7 @@ import "@workspace/design-system/globals.css";
 import nextMetadata from "@/lib/next-metadata";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import Sidebar from "@/components/sidebar/Sidebar";
+import NoteTitleInput from "@/components/note/NoteTitleInput";
 
 export const metadata: Metadata = nextMetadata();
 
@@ -18,9 +19,9 @@ export default function Layout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex flex-1 flex-col">
             <header className="flex items-center px-5 py-5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center">
                 <Sidebar />
-                <p>Hello</p>
+                <NoteTitleInput />
               </div>
             </header>
 
