@@ -10,7 +10,7 @@ export default function NoteTitleInput() {
     <div>
       <Input
         id="note-title"
-        className="bg-background dark:bg-background border-none focus-visible:border-none focus-visible:outline-none focus-visible:ring-0"
+        className="bg-background dark:bg-background border-none shadow-none focus-visible:border-none focus-visible:outline-none focus-visible:ring-0"
         placeholder="Untitled Note"
         type="text"
         value={get}
