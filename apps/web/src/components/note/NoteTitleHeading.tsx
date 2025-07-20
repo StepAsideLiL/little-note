@@ -7,8 +7,10 @@ export default function NoteTitleHeading() {
   const { get } = store.useNoteTitle();
 
   return (
-    <h1 className={cn("heading", get === "" && "text-muted")}>
-      {get === "" ? "Untitled Note" : get}
-    </h1>
+    <label htmlFor="note-title">
+      <h1 className={cn("heading", get === "" && "text-muted")}>
+        {get === "" ? "Untitled Note" : get}
+      </h1>
+    </label>
   );
 }
