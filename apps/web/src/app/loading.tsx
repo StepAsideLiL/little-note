@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+    <main className="from-background to-background/60 flex min-h-screen items-center justify-center bg-gradient-to-br">
       <div className="text-center">
         {/* Loading text with pulse animation */}
         <h2 className="text-muted-foreground mb-2 animate-pulse text-2xl font-semibold">
