@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "@workspace/design-system/globals.css";
 import nextMetadata from "@/lib/next-metadata";
 import ThemeProvider from "@/components/providers/ThemeProvider";
+import { Toaster } from "@workspace/design-system/ui/sonner";
 
 export const metadata: Metadata = nextMetadata();
 
@@ -16,6 +17,8 @@ export default function Layout({
       <body className={`${fonts.inter.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
