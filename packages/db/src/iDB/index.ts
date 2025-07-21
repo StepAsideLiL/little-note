@@ -19,6 +19,9 @@ localIndexedDB.version(1).stores({
   notes: "++id",
 });
 
+/**
+ * IndexedDB database API.
+ */
 export const iDB = {
   /**
    * Get all notes.
@@ -28,23 +31,21 @@ export const iDB = {
 
   /**
    * Create a new note.
-   * @param noteTitle Title of the note
-   * @param noteContent Content of the note
-   * @returns TLittleNote
+   * @param noteTitle Title of the note.
+   * @param noteContent Content of the note.
+   * @returns noteId Id of the note.
    */
   createNote: async (noteTitle: string, noteContent: JSONContent) => {
     const id = generateId();
     const slugifyTitle = generateSlug(noteTitle);
 
-    const s = await localIndexedDB.notes.add({
+    return await localIndexedDB.notes.add({
       id: id,
       note: noteContent,
       title: noteTitle,
       slug: `${slugifyTitle}-${id}`,
       createdAt: new Date(),
     });
-
-    return s;
   },
 };
 
