@@ -5,13 +5,18 @@ import { Button } from "@workspace/design-system/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
+  // SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@workspace/design-system/ui/sheet";
+import NewNoteButton from "@/components/note/NewNoteButton";
+import { iDB, useLiveQuery } from "@workspace/db";
+import Link from "next/link";
 
 export default function Sidebar() {
+  const notes = useLiveQuery(() => iDB.getAllNotes());
+
   return (
     <Sheet>
       <SheetTrigger>
@@ -27,12 +32,29 @@ export default function Sidebar() {
 
       <SheetContent side="left" className="w-72">
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
+          <SheetTitle>Notes</SheetTitle>
+          <NewNoteButton />
         </SheetHeader>
+
+        <div className="p-5">
+          {notes && notes.length !== 0 ? (
+            <div>
+              {notes.map((note) => (
+                <Link
+                  key={note.id}
+                  href={`/${note.slug}`}
+                  className="text-muted-foreground hover:bg-muted rounded-xs block px-2 py-1 text-sm"
+                >
+                  {note.title}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div>
+              <p className="text-muted text-center">No notes yet.</p>
+            </div>
+          )}
+        </div>
       </SheetContent>
     </Sheet>
   );
