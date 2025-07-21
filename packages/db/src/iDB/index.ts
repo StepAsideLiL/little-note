@@ -54,6 +54,20 @@ export const iDB = {
         return `${slugifyTitle}-${id}`;
       });
   },
+
+  updateNote: async (
+    noteId: string,
+    noteTitle: string,
+    noteContent: JSONContent
+  ) => {
+    const slugifyTitle = generateSlug(noteTitle);
+
+    return await localIndexedDB.notes.update(noteId, {
+      title: noteTitle,
+      note: noteContent,
+      slug: `${slugifyTitle}-${noteId}`,
+    });
+  },
 };
 
 export type TiDB = typeof iDB;
