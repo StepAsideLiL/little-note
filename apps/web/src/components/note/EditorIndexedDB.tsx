@@ -27,7 +27,7 @@ export default function EditorIndexedDB({ noteSlug }: { noteSlug: string }) {
   return (
     <>
       <NoteTitleHeading />
-      <Editor noteContent={note.note} />
+      <Editor note={note} />
     </>
   );
 }
