@@ -5,7 +5,6 @@ import { Button } from "@workspace/design-system/ui/button";
 import {
   Sheet,
   SheetContent,
-  // SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -13,12 +12,14 @@ import {
 import NewNoteButton from "@/components/note/NewNoteButton";
 import { iDB, useLiveQuery } from "@workspace/db";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Sidebar() {
   const notes = useLiveQuery(() => iDB.getAllNotes());
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger>
         <Button
           variant={"ghost"}
@@ -44,6 +45,7 @@ export default function Sidebar() {
                   key={note.id}
                   href={`/${note.id}`}
                   className="text-muted-foreground hover:bg-muted rounded-xs block px-2 py-1 text-sm"
+                  onClick={() => setIsOpen(false)}
                 >
                   {note.title}
                 </Link>
