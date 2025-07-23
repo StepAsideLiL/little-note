@@ -42,7 +42,7 @@ export default function Sidebar() {
               {notes.map((note) => (
                 <Link
                   key={note.id}
-                  href={`/${note.slug}`}
+                  href={`/${note.id}`}
                   className="text-muted-foreground hover:bg-muted rounded-xs block px-2 py-1 text-sm"
                 >
                   {note.title}

@@ -31,8 +31,8 @@ export const iDB = {
   /**
    * Get a note by slug.
    */
-  getNoteBySlug: async (slug: string) => {
-    return await localIndexedDB.notes.where("slug").equals(slug).first();
+  getNoteByNoteId: async (noteId: string) => {
+    return await localIndexedDB.notes.where("id").equals(noteId).first();
   },
 
   /**

@@ -3,13 +3,13 @@ import EditorIndexedDB from "@/components/note/EditorIndexedDB";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ id: string }>;
 }) {
-  const noteSlug = (await params).slug;
+  const noteId = (await params).id;
 
   return (
     <>
-      <EditorIndexedDB noteSlug={noteSlug} />
+      <EditorIndexedDB noteId={noteId} />
     </>
   );
 }

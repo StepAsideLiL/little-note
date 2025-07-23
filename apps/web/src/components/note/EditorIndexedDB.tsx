@@ -6,8 +6,8 @@ import NoteTitleHeading from "./NoteTitleHeading";
 import { useEffect } from "react";
 import { store } from "@/lib/store";
 
-export default function EditorIndexedDB({ noteSlug }: { noteSlug: string }) {
-  const note = useLiveQuery(() => iDB.getNoteBySlug(noteSlug));
+export default function EditorIndexedDB({ noteId }: { noteId: string }) {
+  const note = useLiveQuery(() => iDB.getNoteByNoteId(noteId));
   const { set: setTitle } = store.useNoteTitle();
   const { set: setContent } = store.useNoteContent();
 
