@@ -11,18 +11,42 @@ type TLittleNote = {
   createdAt: Date;
 };
 
+type TActionNoteId = {
+  id: string;
+};
+
+export const noActiveNoteFoundString = "no-active-note-found";
+export const activeNoteIdString = "active-note-id";
+
 const localIndexedDB = new Dexie("content") as Dexie & {
   notes: EntityTable<TLittleNote, "id">;
+  activeNoteId: EntityTable<TActionNoteId, "id">;
 };
 
 localIndexedDB.version(1).stores({
   notes: "++id, slug",
+  activeNoteId: "++id",
 });
 
 /**
  * IndexedDB database API.
  */
 export const iDB = {
+  getActiveNoteId: async () => {
+    const activeNote = await localIndexedDB.activeNoteId.toArray();
+
+    if (activeNote.length !== 0) {
+      return activeNote[0]!.id;
+    } else {
+      return noActiveNoteFoundString;
+    }
+  },
+
+  setActiveNoteId: async (noteId: string) => {
+    await localIndexedDB.activeNoteId.clear();
+    await localIndexedDB.activeNoteId.add({ id: noteId });
+  },
+
   /**
    * Get all notes.
    */
@@ -42,17 +66,13 @@ export const iDB = {
     const id = generateId();
     const slugifyTitle = generateSlug(noteTitle);
 
-    return await localIndexedDB.notes
-      .add({
-        id: id,
-        note: noteContent,
-        title: noteTitle,
-        slug: `${slugifyTitle}-${id}`,
-        createdAt: new Date(),
-      })
-      .then(() => {
-        return `${slugifyTitle}-${id}`;
-      });
+    return await localIndexedDB.notes.add({
+      id: id,
+      note: noteContent,
+      title: noteTitle,
+      slug: `${slugifyTitle}-${id}`,
+      createdAt: new Date(),
+    });
   },
 
   updateNote: async (
@@ -76,3 +96,4 @@ export const iDB = {
 
 export type TiDB = typeof iDB;
 export type { TLittleNote };
+export type { TActionNoteId };
