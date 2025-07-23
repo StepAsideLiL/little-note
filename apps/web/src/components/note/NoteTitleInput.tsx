@@ -1,10 +1,15 @@
 "use client";
 
 import { store } from "@/lib/store";
+import { iDB } from "@workspace/db";
 import { Input } from "@workspace/design-system/ui/input";
+import { usePathname } from "next/navigation";
 
 export default function NoteTitleInput() {
   const { get, set } = store.useNoteTitle();
+  const { get: noteContent } = store.useNoteContent();
+  const pathname = usePathname();
+  const noteId = pathname.replace("/", "");
 
   return (
     <div>
@@ -14,7 +19,13 @@ export default function NoteTitleInput() {
         placeholder="Untitled Note"
         type="text"
         value={get}
-        onChange={(e) => set(e.target.value)}
+        onChange={(e) => {
+          if (pathname !== "/") {
+            iDB.updateNote(noteId, e.target.value, noteContent);
+          }
+
+          set(e.target.value);
+        }}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             event.preventDefault();
