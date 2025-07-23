@@ -68,6 +68,10 @@ export const iDB = {
       slug: `${slugifyTitle}-${noteId}`,
     });
   },
+
+  draftNote: async (note: TLittleNote) => {
+    await localIndexedDB.notes.put(note, "draftNote");
+  },
 };
 
 export type TiDB = typeof iDB;

@@ -2,6 +2,7 @@
 
 import { store } from "@/lib/store";
 import { iDB } from "@workspace/db";
+import { generateSlug } from "@workspace/db/lib";
 import { Input } from "@workspace/design-system/ui/input";
 import { usePathname } from "next/navigation";
 
@@ -15,15 +16,23 @@ export default function NoteTitleInput() {
     <div>
       <Input
         id="note-title"
-        className="bg-background dark:bg-background border-none shadow-none focus-visible:border-none focus-visible:outline-none focus-visible:ring-0"
         placeholder="Untitled Note"
         type="text"
+        autoComplete="off"
+        className="bg-background dark:bg-background border-none shadow-none focus-visible:border-none focus-visible:outline-none focus-visible:ring-0"
         value={get}
-        onChange={(e) => {
+        onChange={async (e) => {
           if (pathname !== "/") {
             iDB.updateNote(noteId, e.target.value, noteContent);
+          } else if (pathname === "/") {
+            await iDB.draftNote({
+              id: "draftNote",
+              title: e.target.value,
+              note: noteContent,
+              createdAt: new Date(),
+              slug: `${generateSlug(e.target.value)}-draftNote`,
+            });
           }
-
           set(e.target.value);
         }}
         onKeyDown={(event) => {
