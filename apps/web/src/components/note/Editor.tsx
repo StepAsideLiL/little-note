@@ -36,8 +36,6 @@ export default function Editor({ note }: { note?: TLittleNote }) {
     },
   });
 
-  console.log(note?.note);
-
   return (
     <>
       <EditorContent editor={editor} className="h-full" />
