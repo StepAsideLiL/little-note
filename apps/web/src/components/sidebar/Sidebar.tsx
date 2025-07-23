@@ -34,7 +34,7 @@ export default function Sidebar() {
       <SheetContent side="left" className="w-72">
         <SheetHeader>
           <SheetTitle>Notes</SheetTitle>
-          <NewNoteButton />
+          <NewNoteButton setIsOpen={setIsOpen} />
         </SheetHeader>
 
         <div className="p-5">
