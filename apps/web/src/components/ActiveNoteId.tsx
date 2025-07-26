@@ -1,6 +1,11 @@
 "use client";
 
-import { iDB, useLiveQuery, noActiveNoteFoundString } from "@workspace/db";
+import {
+  iDB,
+  useLiveQuery,
+  noActiveNoteFoundString,
+  myNoteIdString,
+} from "@workspace/db";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
@@ -12,8 +17,9 @@ export default function ActiveNoteId() {
       return;
     }
 
+    // Todo: fix edge cases.
     async function createNewNote() {
-      const id = await iDB.createNote("", {});
+      const id = await iDB.createNote("My Note", {}, myNoteIdString);
       await iDB.setActiveNoteId(id);
       redirect(`/${id}`);
     }

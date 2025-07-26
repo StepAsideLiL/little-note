@@ -6,7 +6,6 @@ import "@workspace/editor/editor.css";
 import { store } from "@/lib/store";
 import { usePathname } from "next/navigation";
 import { iDB, TLittleNote } from "@workspace/db";
-import { generateSlug } from "@workspace/db/lib";
 
 export default function Editor({ note }: { note?: TLittleNote }) {
   const { set } = store.useNoteContent();
@@ -21,15 +20,6 @@ export default function Editor({ note }: { note?: TLittleNote }) {
     onUpdate: async ({ editor }) => {
       if (pathname !== "/" && note) {
         await iDB.updateNote(note.id, noteTitle, editor.getJSON());
-      } else if (pathname === "/") {
-        await iDB.draftNote({
-          id: "draftNote",
-          title: noteTitle,
-          note: editor.getJSON(),
-          createdAt: new Date(),
-          slug: `${generateSlug(noteTitle)}-draftNote`,
-        });
-        set(editor.getJSON());
       } else {
         set(editor.getJSON());
       }
