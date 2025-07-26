@@ -13,6 +13,7 @@ import NewNoteButton from "@/components/note/NewNoteButton";
 import { iDB, useLiveQuery } from "@workspace/db";
 import Link from "next/link";
 import { useState } from "react";
+import { cn } from "@workspace/design-system/lib/utils";
 
 export default function Sidebar() {
   const notes = useLiveQuery(() => iDB.getAllNotes());
@@ -44,10 +45,13 @@ export default function Sidebar() {
                 <Link
                   key={note.id}
                   href={`/${note.id}`}
-                  className="text-muted-foreground hover:bg-muted rounded-xs block px-2 py-1 text-sm"
+                  className={cn(
+                    "text-muted-foreground hover:bg-muted rounded-xs block px-2 py-1 text-sm",
+                    note.title === "" && "text-muted-foreground/50"
+                  )}
                   onClick={() => setIsOpen(false)}
                 >
-                  {note.title}
+                  {note.title === "" ? "Untitled" : note.title}
                 </Link>
               ))}
             </div>

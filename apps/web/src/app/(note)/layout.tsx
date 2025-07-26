@@ -1,5 +1,5 @@
+import NewNoteButton from "@/components/note/NewNoteButton";
 import NoteTitleInput from "@/components/note/NoteTitleInput";
-import SaveNoteButton from "@/components/note/SaveNoteButton";
 import Sidebar from "@/components/sidebar/Sidebar";
 import SwitchThemeButton from "@/components/SwitchThemeButton";
 
@@ -17,7 +17,7 @@ export default function Layout({
         </div>
 
         <div className="flex items-center gap-2">
-          <SaveNoteButton />
+          <NewNoteButton />
           <SwitchThemeButton />
         </div>
       </header>
