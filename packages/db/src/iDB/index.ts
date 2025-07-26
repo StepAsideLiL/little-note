@@ -83,6 +83,9 @@ export const iDB = {
     });
   },
 
+  /**
+   * Update a note.
+   */
   updateNote: async (
     noteId: string,
     noteTitle: string,
@@ -97,6 +100,9 @@ export const iDB = {
     });
   },
 
+  /**
+   * Delete a note.
+   */
   deleteNote: async (noteId: string) => {
     if (noteId === myNoteIdString) {
       return;
