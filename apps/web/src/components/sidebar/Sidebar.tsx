@@ -46,12 +46,30 @@ export default function Sidebar() {
                   key={note.id}
                   href={`/${note.id}`}
                   className={cn(
-                    "text-muted-foreground hover:bg-muted rounded-xs block px-2 py-1 text-sm",
-                    note.title === "" && "text-muted-foreground/50"
+                    "hover:bg-muted/60 rounded-xs flex h-8 items-center justify-between px-2 py-1 text-sm"
                   )}
                   onClick={() => setIsOpen(false)}
                 >
-                  {note.title === "" ? "Untitled" : note.title}
+                  <div
+                    className={cn(
+                      "text-muted-foreground",
+                      note.title === "" && "text-muted-foreground/50"
+                    )}
+                  >
+                    {note.title === "" ? "Untitled" : note.title}
+                  </div>
+
+                  <Button
+                    variant={"outline"}
+                    size={"icon"}
+                    className="hover:text-destructive text-destructive/60 size-6 cursor-pointer"
+                    onClick={async (event) => {
+                      event.stopPropagation();
+                      await iDB.deleteNote(note.id);
+                    }}
+                  >
+                    <Icons.LucideIcon.Trash size={8} />
+                  </Button>
                 </Link>
               ))}
             </div>

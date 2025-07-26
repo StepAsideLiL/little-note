@@ -92,8 +92,8 @@ export const iDB = {
     });
   },
 
-  draftNote: async (note: TLittleNote) => {
-    await localIndexedDB.notes.put(note, "draftNote");
+  deleteNote: async (noteId: string) => {
+    await localIndexedDB.notes.delete(noteId);
   },
 };
 
