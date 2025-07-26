@@ -17,6 +17,7 @@ type TActionNoteId = {
 
 export const noActiveNoteFoundString = "no-active-note-found";
 export const activeNoteIdString = "active-note-id";
+export const myNoteIdString = "my-note";
 
 const localIndexedDB = new Dexie("content") as Dexie & {
   notes: EntityTable<TLittleNote, "id">;
@@ -65,8 +66,12 @@ export const iDB = {
   /**
    * Create a new note.
    */
-  createNote: async (noteTitle: string, noteContent: JSONContent) => {
-    const id = generateId();
+  createNote: async (
+    noteTitle: string,
+    noteContent: JSONContent,
+    noteId?: string
+  ) => {
+    const id = noteId ? noteId : generateId();
     const slugifyTitle = generateSlug(noteTitle);
 
     return await localIndexedDB.notes.add({
@@ -93,6 +98,9 @@ export const iDB = {
   },
 
   deleteNote: async (noteId: string) => {
+    if (noteId === myNoteIdString) {
+      return;
+    }
     await localIndexedDB.notes.delete(noteId);
   },
 };
