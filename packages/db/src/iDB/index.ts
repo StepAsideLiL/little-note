@@ -50,7 +50,10 @@ export const iDB = {
   /**
    * Get all notes.
    */
-  getAllNotes: async () => await localIndexedDB.notes.toArray(),
+  getAllNotes: async () =>
+    (await localIndexedDB.notes.toArray()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    ),
 
   /**
    * Get a note by slug.
