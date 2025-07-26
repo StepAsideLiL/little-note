@@ -10,14 +10,16 @@ import {
   SheetTrigger,
 } from "@workspace/design-system/ui/sheet";
 import NewNoteButton from "@/components/note/NewNoteButton";
-import { iDB, useLiveQuery } from "@workspace/db";
+import { iDB, myNoteIdString, useLiveQuery } from "@workspace/db";
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@workspace/design-system/lib/utils";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
   const notes = useLiveQuery(() => iDB.getAllNotes());
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -42,35 +44,38 @@ export default function Sidebar() {
           {notes && notes.length !== 0 ? (
             <div>
               {notes.map((note) => (
-                <Link
+                <div
                   key={note.id}
-                  href={`/${note.id}`}
-                  className={cn(
-                    "hover:bg-muted/60 rounded-xs flex h-8 items-center justify-between px-2 py-1 text-sm"
-                  )}
-                  onClick={() => setIsOpen(false)}
+                  className="hover:bg-muted/60 rounded-xs flex h-8 items-center justify-between"
                 >
-                  <div
+                  <Link
+                    key={note.id}
+                    href={`/${note.id}`}
                     className={cn(
-                      "text-muted-foreground",
+                      "text-muted-foregroun flex-1 px-2 py-1 text-sm font-normal",
                       note.title === "" && "text-muted-foreground/50"
                     )}
+                    onClick={() => setIsOpen(false)}
                   >
                     {note.title === "" ? "Untitled" : note.title}
-                  </div>
+                  </Link>
 
-                  <Button
-                    variant={"outline"}
-                    size={"icon"}
-                    className="hover:text-destructive text-destructive/60 size-6 cursor-pointer"
-                    onClick={async (event) => {
-                      event.stopPropagation();
-                      await iDB.deleteNote(note.id);
-                    }}
-                  >
-                    <Icons.LucideIcon.Trash size={8} />
-                  </Button>
-                </Link>
+                  {note.id === myNoteIdString || (
+                    <Button
+                      variant={"ghost"}
+                      size={"icon"}
+                      className="hover:text-destructive text-destructive/60 mr-1 size-6 cursor-pointer"
+                      onClick={async () => {
+                        await iDB.deleteNote(note.id).then(async () => {
+                          router.replace(`/${myNoteIdString}`);
+                          await iDB.setActiveNoteId(myNoteIdString);
+                        });
+                      }}
+                    >
+                      <Icons.LucideIcon.Trash size={8} />
+                    </Button>
+                  )}
+                </div>
               ))}
             </div>
           ) : (
