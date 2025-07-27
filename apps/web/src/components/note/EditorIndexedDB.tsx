@@ -23,9 +23,14 @@ export default function EditorIndexedDB({ noteId }: { noteId: string }) {
       return () => clearTimeout(timeout);
     }
 
+    async function setActiveNote(noteId: string) {
+      await iDB.setActiveNoteId(noteId);
+    }
+
     if (note) {
       setTitle(note.title);
       setContent(note.note);
+      setActiveNote(note.id);
     } else {
       setTitle("");
       setContent({});
