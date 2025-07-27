@@ -6,6 +6,7 @@ import NoteTitleHeading from "./NoteTitleHeading";
 import { useEffect } from "react";
 import { store } from "@/lib/store";
 import { usePathname } from "next/navigation";
+import { Skeleton } from "@workspace/design-system/ui/skeleton";
 
 export default function EditorIndexedDB({ noteId }: { noteId: string }) {
   const note = useLiveQuery(() => iDB.getNoteByNoteId(noteId));
@@ -39,7 +40,12 @@ export default function EditorIndexedDB({ noteId }: { noteId: string }) {
         </>
       );
     } else {
-      return <p className="text-muted text-center text-xl">Note not found.</p>;
+      return (
+        <div className="space-y-3">
+          <Skeleton className="h-10 w-full"></Skeleton>
+          <Skeleton className="h-6 w-full"></Skeleton>
+        </div>
+      );
     }
   }
 
