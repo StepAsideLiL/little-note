@@ -17,7 +17,6 @@ export default function ActiveNoteId() {
       return;
     }
 
-    // Todo: fix edge cases.
     async function createNewNote() {
       const id = await iDB.createNote("My Note", {}, myNoteIdString);
       await iDB.setActiveNoteId(id);
