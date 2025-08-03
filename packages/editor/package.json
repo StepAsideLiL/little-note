@@ -46,6 +46,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./extension": "./src/extension.ts",
-    "./editor.css": "./src/styles/editor.css"
+    "./editor.css": "./src/styles/editor.css",
+    "./editor": "./src/editor/index.tsx"
   }
 }
