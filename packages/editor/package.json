@@ -27,6 +27,7 @@
     "@tiptap/extensions": "^3.0.7",
     "@tiptap/pm": "^3.0.7",
     "@tiptap/react": "^3.0.7",
+    "@workspace/design-system": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -34,7 +35,6 @@
     "@tailwindcss/postcss": "^4.1.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@workspace/design-system": "workspace:*",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.30.0",
