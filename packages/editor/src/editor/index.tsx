@@ -7,6 +7,7 @@ import { extensions } from "../extensions";
 import { Button } from "@workspace/design-system/ui/button";
 import { Separator } from "@workspace/design-system/ui/separator";
 import Icons from "@workspace/design-system/icons";
+import { useEffect, useReducer } from "react";
 
 export default function Editor({
   content,
@@ -17,6 +18,8 @@ export default function Editor({
   readOnly?: boolean;
   onContentUpdate?: (content: JSONContent) => void;
 }) {
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+
   const editor = useEditor({
     extensions: [...extensions],
     content: content || "",
@@ -29,6 +32,16 @@ export default function Editor({
       }
     },
   });
+
+  useEffect(() => {
+    if (!editor) return;
+    editor.on("selectionUpdate", forceUpdate);
+    editor.on("transaction", forceUpdate);
+    return () => {
+      editor.off("selectionUpdate", forceUpdate);
+      editor.off("transaction", forceUpdate);
+    };
+  }, [editor]);
 
   return (
     <>
