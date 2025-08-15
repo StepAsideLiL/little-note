@@ -1,6 +1,7 @@
 "use client";
 
-import { EditorContent, JSONContent, useEditor } from "@tiptap/react";
+import { EditorContent, useEditor } from "@tiptap/react";
+import { JSX } from "react";
 import { FloatingMenu } from "@tiptap/react/menus";
 import "@workspace/editor/editor.css";
 import { extensions } from "../extensions";
@@ -8,6 +9,7 @@ import { Button } from "@workspace/design-system/ui/button";
 import { Separator } from "@workspace/design-system/ui/separator";
 import Icons from "@workspace/design-system/icons";
 import { useEffect, useReducer } from "react";
+import { JSONContent } from "@tiptap/core";
 
 export default function Editor({
   content,
@@ -17,7 +19,7 @@ export default function Editor({
   content?: JSONContent | string;
   readOnly?: boolean;
   onContentUpdate?: (content: JSONContent) => void;
-}) {
+}): JSX.Element {
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   const editor = useEditor({
