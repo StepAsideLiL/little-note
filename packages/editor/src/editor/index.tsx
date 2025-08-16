@@ -11,6 +11,8 @@ import Icons from "@workspace/design-system/icons";
 import { useEffect, useReducer } from "react";
 import { JSONContent } from "@tiptap/core";
 
+import { LinkDialog } from "./LinkDialog";
+
 export default function Editor({
   content,
   readOnly = false,
@@ -88,6 +90,8 @@ export default function Editor({
             >
               <Icons.LucideIcon.Underline />
             </Button>
+
+            <LinkDialog editor={editor} />
 
             <Separator orientation="vertical" className="bg-foreground/30" />
 
