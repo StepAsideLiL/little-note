@@ -14,7 +14,7 @@ import Text from "@tiptap/extension-text";
 // import * as TextStyle from "@tiptap/extension-text-style";
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
-import { Placeholder } from "@tiptap/extensions";
+import { Placeholder, UndoRedo } from "@tiptap/extensions";
 import { textblockTypeInputRule } from "@tiptap/react";
 import { cn } from "@workspace/design-system/lib/utils";
 
@@ -94,4 +94,5 @@ export const extensions = [
       class: cn("underline"),
     },
   }),
+  UndoRedo,
 ];
