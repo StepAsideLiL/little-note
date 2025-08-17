@@ -9,6 +9,7 @@ import Heading from "@tiptap/extension-heading";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 // import * as Image from "@tiptap/extension-image";
 import Italic from "@tiptap/extension-italic";
+import Link from "@tiptap/extension-link";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 // import * as TextStyle from "@tiptap/extension-text-style";
@@ -64,6 +65,13 @@ export const extensions = [
   Italic.configure({
     HTMLAttributes: {
       class: cn("italic"),
+    },
+  }),
+  Link.configure({
+    openOnClick: true,
+    HTMLAttributes: {
+      target: "_blank",
+      class: cn("underline cursor-pointer text-muted-foreground"),
     },
   }),
   ListItem.configure({
