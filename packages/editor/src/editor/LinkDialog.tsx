@@ -44,11 +44,11 @@ export function LinkDialog({ editor }: { editor: Editor }): JSX.Element {
       <Button
         ref={refs.setReference}
         {...getReferenceProps()}
-        variant="outline"
+        variant={editor.getAttributes("link").href ? "default" : "outline"}
         size="icon"
         className="size-7 cursor-pointer"
       >
-        <Icons.LucideIcon.Link />
+        <Icons.LucideIcon.Link2 />
       </Button>
 
       {open && (
@@ -57,12 +57,44 @@ export function LinkDialog({ editor }: { editor: Editor }): JSX.Element {
             ref={refs.setFloating}
             style={floatingStyles}
             {...getFloatingProps()}
-            className="bg-background w-full max-w-[140px] rounded border p-1 shadow"
+            className="bg-background flex w-full max-w-52 items-center gap-1 rounded border p-1 shadow"
           >
             <Input
               ref={inputRef}
-              className="focus-visible:border-0 focus-visible:ring-0"
+              className="h-7 focus-visible:border-0 focus-visible:ring-0"
+              defaultValue={
+                editor.getAttributes("link").href
+                  ? editor.getAttributes("link").href
+                  : ""
+              }
+              onChange={(event) => {
+                if (
+                  editor.getAttributes("link").href &&
+                  editor.getAttributes("link").href.length !== 0
+                ) {
+                  editor.commands.unsetLink();
+                }
+
+                editor.commands.setLink({
+                  href: event.target.value,
+                  target: "_blank",
+                });
+              }}
             />
+
+            <Button
+              variant="outline"
+              size="icon"
+              className="size-7 cursor-pointer"
+              onClick={() => {
+                if (inputRef.current) {
+                  inputRef.current.value = "";
+                }
+                editor.commands.unsetLink();
+              }}
+            >
+              <Icons.LucideIcon.Link2Off />
+            </Button>
           </div>
         </FloatingPortal>
       )}
